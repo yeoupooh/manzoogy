@@ -39,11 +39,18 @@ class FormMain(Form, Observer):
 	oldDateTime = 0
 
 	def __init__(self):
+		print "initializing..."
+	
 		self.help = Image.FromFile("res\\help.png")
 	
 		c = form = self
 		c.Text = PROGRAM_NAME + " " + PROGRAM_VERSION
 		c.Icon = Icon("res\\pooh.ico")
+		c.Width = 680
+		c.Height = 400
+		c.Left = 50
+		c.Top = 50
+		#c.StartPosition = FormStartPosition.CenterScreen
 		c.WindowState = FormWindowState.Maximized
 		c.FormBorderStyle = FormBorderStyle.None
 		c.DoubleBuffered = True

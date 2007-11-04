@@ -18,6 +18,7 @@ from image.drawer import *
 from image.navigator import *
 from common.observer import *
 
+from autoupdater import *
 from PenStrokeRecognizer import *
 
 class ImageObserver(Observer):
@@ -162,6 +163,7 @@ class FormMain(Form, Observer):
 	
 if __name__ == '__main__':
 	print PROGRAM_INFO
-	form = FormMain()
-	Application.Run(form)
-
+	c = AutoUpdater('ManZooGy', '0.5.1.2', 'http://yeoupooh.us.to:8080/ManZooGy')
+	if c.has_new_version() == False:
+		form = FormMain()
+		Application.Run(form)

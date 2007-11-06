@@ -7,12 +7,15 @@ PROGRAM_AUTHOR = "yeoupooh at gmail dot com"
 PROGRAM_INFO = PROGRAM_NAME + " " + PROGRAM_VERSION + " (" + PROGRAM_AUTHOR + ")"
 
 import clr
+
 clr.AddReference('System.Windows.Forms')
 clr.AddReference('System.Drawing')
+
 clr.AddReference('PenStrokeRecognizer')
 
 from System.Windows.Forms import *
 from System.Drawing import *
+from System.ComponentModel import *
 
 from image.drawer import *
 from image.navigator import *
@@ -20,6 +23,7 @@ from common.observer import *
 
 from autoupdater import *
 from PenStrokeRecognizer import *
+from xbutton import *
 
 class ImageObserver(Observer):
 	control = None
@@ -31,13 +35,16 @@ class ImageObserver(Observer):
 		#print "IO: update: args=" + args
 		self.control.Refresh()
 
-class FormMain(Form, Observer):
+class FormMain(Form, Observable):
 	idr = None
 	inv = None
 	rc = None
 	
 	help = None 
 	oldDateTime = 0
+	
+	count = 255
+	rect = Rectangle(0, 100, 500, 20)
 
 	def __init__(self):
 		print "initializing..."
@@ -76,6 +83,33 @@ class FormMain(Form, Observer):
 		rc.Recognized += self.__rc_Recognized;
 		
 		self.oldDateTime = DateTime.Now
+		
+		c = self.components = Container()
+		t = self.tm = Timer(c)
+		t.Interval = 50
+		t.Enabled = True
+		t.Tick += self.__tm_Tick
+		
+		c = XButton()
+		c.Location = Point(10, 10)
+		c.Width = self.Width - 20
+		c.Height = 20
+		c.Text = self.Text
+		c.KeyDown += self.__form_KeyDown
+		c.KeyUp += self.__form_KeyUp
+		self.Controls.Add(c)
+		inv.add_observer(c)
+		#self.add_observer(c)
+		
+	def __tm_Tick(self, sender, event):
+		c = self.count
+		c = c - 5
+		if c < 0:
+			c = 0
+			t = self.tm
+			t.Enabled = False
+		self.count = c
+		self.Invalidate(self.rect)
 		
 	def __form_KeyDown(self, sender, event):
 		kc = event.KeyCode
@@ -128,6 +162,14 @@ class FormMain(Form, Observer):
 			g.DrawImage(self.help, 0, 0)
 		else:
 			idr.draw(g, self.ClientRectangle)
+		
+		"""		
+		// 투명한 브러쉬
+		// ref: http://www.c-sharpcorner.com/UploadFile/mahesh/DrawTransparentImageUsingAB10102005010514AM/DrawTransparentImageUsingAB.aspx
+		"""
+		b = SolidBrush(Color.FromArgb(self.count, 255, 0, 0));
+
+		g.DrawString(self.Text, self.Font, b, self.rect.X, self.rect.Y);
 		
 	def __form_Closing(self, sender, event):
 		self.inv.save_config()

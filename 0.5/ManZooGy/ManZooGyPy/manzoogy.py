@@ -98,7 +98,7 @@ class FormMain(Form, Observable):
 		c.KeyDown += self.__form_KeyDown
 		c.KeyUp += self.__form_KeyUp
 		self.Controls.Add(c)
-		inv.add_observer(c)
+		inv.add_observer(XButtonImageObserver(c))
 		#self.add_observer(c)
 		
 	def __tm_Tick(self, sender, event):
@@ -162,14 +162,6 @@ class FormMain(Form, Observable):
 			g.DrawImage(self.help, 0, 0)
 		else:
 			idr.draw(g, self.ClientRectangle)
-		
-		"""		
-		// 투명한 브러쉬
-		// ref: http://www.c-sharpcorner.com/UploadFile/mahesh/DrawTransparentImageUsingAB10102005010514AM/DrawTransparentImageUsingAB.aspx
-		"""
-		b = SolidBrush(Color.FromArgb(self.count, 255, 0, 0));
-
-		g.DrawString(self.Text, self.Font, b, self.rect.X, self.rect.Y);
 		
 	def __form_Closing(self, sender, event):
 		self.inv.save_config()

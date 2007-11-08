@@ -9,6 +9,8 @@ Name: "ko"; MessagesFile: "compiler:Languages\Korean-5-5.1.11.isl"
 AppId=ManZooGy
 AppName=¸¸Á×ÀÌ
 AppVerName=¸¸Á×ÀÌ
+AppPublisher=JinwooMin
+AppPublisherURL=http://manzoogy.tistory.com/
 VersionInfoCompany=JinwooMin
 VersionInfoVersion=0.5.1.2
 VersionInfoCopyright=ManZooGy License

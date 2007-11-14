@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: euc-kr -*-
 
-PROGRAM_NAME = "ManZooGy (old P1Cartoon)"
-PROGRAM_VERSION = "0.5 alpha 1"
+PROGRAM_NAME = "¸¸Á×ÀÌ"
+PROGRAM_VERSION = "0.5.1.2"
 PROGRAM_AUTHOR = "yeoupooh at gmail dot com"
 PROGRAM_INFO = PROGRAM_NAME + " " + PROGRAM_VERSION + " (" + PROGRAM_AUTHOR + ")"
+PROGRAM_UPDATE_URL = 'http://yeoupooh.us.to:8080/ManZooGy'
 
 import clr
 
@@ -92,9 +93,11 @@ class FormMain(Form, Observable):
 		
 		c = XButton()
 		c.Location = Point(10, 10)
-		c.Width = self.Width - 20
-		c.Height = 20
+		c.Width = self.ClientRectangle.Width - 20
+		c.Height = 40
+		c.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
 		c.Text = self.Text
+		c.Font = Font("±¼¸²", 20)
 		c.KeyDown += self.__form_KeyDown
 		c.KeyUp += self.__form_KeyUp
 		self.Controls.Add(c)
@@ -197,7 +200,7 @@ class FormMain(Form, Observable):
 	
 if __name__ == '__main__':
 	print PROGRAM_INFO
-	c = AutoUpdater('ManZooGy', '0.5.1.2', 'http://yeoupooh.us.to:8080/ManZooGy')
+	c = AutoUpdater(PROGRAM_NAME, PROGRAM_VERSION, PROGRAM_UPDATE_URL)
 	if c.has_new_version() == False:
 		form = FormMain()
 		Application.Run(form)

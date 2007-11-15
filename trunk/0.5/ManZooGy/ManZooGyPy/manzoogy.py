@@ -2,7 +2,7 @@
 # -*- coding: euc-kr -*-
 
 PROGRAM_NAME = "만죽이"
-PROGRAM_VERSION = "0.5.1.2"
+PROGRAM_VERSION = "0.5.1.3"
 PROGRAM_AUTHOR = "yeoupooh at gmail dot com"
 PROGRAM_INFO = PROGRAM_NAME + " " + PROGRAM_VERSION + " (" + PROGRAM_AUTHOR + ")"
 PROGRAM_UPDATE_URL = 'http://yeoupooh.us.to:8080/ManZooGy'

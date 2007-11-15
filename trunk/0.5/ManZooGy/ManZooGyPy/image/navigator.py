@@ -62,18 +62,18 @@ class ImageNavigator(Observable):
 		
 	def __set_changed(self):
 		sb = StringBuilder()
-		sb.Append('R:' + self.Drawer.Rotation.ToString())
+		sb.Append('회전:' + self.Drawer.Rotation.ToString())
 		sb.Append(' ')
-		sb.Append('VD:' + self.ViewDirection.ToString())
+		sb.Append('방향:' + self.ViewDirection.ToString())
 		sb.Append(' ')
-		sb.Append('VP:' + self.Drawer.ViewPart.ToString())
+		sb.Append('좌우:' + self.Drawer.ViewPart.ToString())
 		sb.Append(' ')
-		sb.Append('I:' + self.Drawer.UseInterpolation.ToString())
+		sb.Append('화질:' + self.Drawer.UseInterpolation.ToString())
 		sb.Append(' ')
 		if self.Index > -1:
-			sb.Append('PN:' + self.Index.ToString())
+			sb.Append('페이지:' + self.Index.ToString())
 			sb.Append(' ')
-			sb.Append('File:' + Path.GetFileName(self.Filenames[self.Index]))
+			sb.Append('파일:' + Path.GetFileName(self.Filenames[self.Index]))
 		self.notify_observers(sb.ToString())
 		
 	def __clean_images(self):

@@ -25,14 +25,14 @@ OutputBaseFilename=ManZooGySetup
 
 [Files]
 Source: C:\Program Files\ISTool\isxdl.dll; Flags: dontcopy
-Source: ManZooGy.exe; DestDir: {app}
-Source: ManZooGy.ini; DestDir: {app}
-Source: manzoogy.py; DestDir: {app}
 Source: *.dll; DestDir: {app}
-Source: ipy\*.*; DestDir: {app}\ipy; Excludes: ".svn"
-Source: res\*.*; DestDir: {app}\res; Flags: recursesubdirs; Excludes: ".svn"
+Source: *.exe; DestDir: {app}
+Source: ManZooGy.ini; DestDir: {app}
+Source: *.py; DestDir: {app}
 Source: common\*.*; DestDir: {app}\common; Flags: recursesubdirs; Excludes: ".svn"
 Source: image\*.*; DestDir: {app}\image; Flags: recursesubdirs; Excludes: ".svn"
+Source: ipy\*.*; DestDir: {app}\ipy; Excludes: ".svn"
+Source: res\*.*; DestDir: {app}\res; Flags: recursesubdirs; Excludes: ".svn"
 
 [Messages]
 WinVersionTooLowError='만죽이'는 윈도우 NT4 이상의 버전을 필요로 합니다.

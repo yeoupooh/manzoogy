@@ -2,7 +2,7 @@
 # -*- coding: euc-kr -*-
 
 PROGRAM_NAME = "만죽이"
-PROGRAM_VERSION = "0.5.1.3"
+PROGRAM_VERSION = "0.5.2.4"
 PROGRAM_AUTHOR = "yeoupooh at gmail dot com"
 PROGRAM_INFO = PROGRAM_NAME + " " + PROGRAM_VERSION + " (" + PROGRAM_AUTHOR + ")"
 PROGRAM_UPDATE_URL = 'http://yeoupooh.us.to:8080/ManZooGy'
@@ -94,10 +94,10 @@ class FormMain(Form, Observable):
 		c = XButton()
 		c.Location = Point(10, 10)
 		c.Width = self.ClientRectangle.Width - 20
-		c.Height = 40
+		c.Height = 60
 		c.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
 		c.Text = self.Text
-		c.Font = Font("굴림", 20)
+		c.Font = Font("맑은 고딕", 16)
 		c.KeyDown += self.__form_KeyDown
 		c.KeyUp += self.__form_KeyUp
 		self.Controls.Add(c)
